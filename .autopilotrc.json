@@ -1,0 +1,28 @@
+{
+  "debounceSeconds": 20,
+  "minSecondsBetweenCommits": 180,
+  "autoPush": true,
+  "blockBranches": [
+    "main",
+    "master"
+  ],
+  "requireChecks": false,
+  "checks": [],
+  "commitMessageMode": "smart",
+  "ai": {
+    "enabled": false,
+    "apiKey": "",
+    "model": "gemini-2.5-flash",
+    "interactive": false
+  },
+  "teamMode": false,
+  "pullBeforePush": true,
+  "conflictStrategy": "abort",
+  "maxUnpushedCommits": 5,
+  "preCommitChecks": {
+    "secrets": true,
+    "fileSize": true,
+    "lint": false,
+    "test": null
+  }
+}
