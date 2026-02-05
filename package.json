@@ -2,6 +2,7 @@
   "name": "autopilot-guard",
   "displayName": "Autopilot Guard",
   "description": "A reliability layer for developers. Makes it hard to lose work — even when you forget.",
+  "publisher": "autopilot-dev",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
