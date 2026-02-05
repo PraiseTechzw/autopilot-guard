@@ -1,0 +1,44 @@
+{
+  "name": "autopilot-guard",
+  "displayName": "Autopilot Guard",
+  "description": "A reliability layer for developers. Makes it hard to lose work — even when you forget.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "autopilot-guard.checkRisk",
+        "title": "Autopilot Guard: Check Risk"
+      }
+    ],
+    "configuration": {
+      "title": "Autopilot Guard",
+      "properties": {
+        "autopilotGuard.autoCommit": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable auto-commit for high risk situations."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^16.11.7",
+    "typescript": "^4.9.5"
+  }
+}
