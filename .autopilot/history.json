@@ -1,6 +1,15 @@
 {
   "commits": [
     {
+      "hash": "41b43b0eafe03c92b677d6e2a29ab69030aaf650",
+      "message": "[autopilot] docs(.): update .\n\n- Switched to npm ci for reliable builds\n- Added coverage reporting to test step",
+      "files": [
+        "EADME.md",
+        ".github/"
+      ],
+      "timestamp": "2026-02-05T22:40:39.508Z"
+    },
+    {
       "hash": "fcb711d6f6bc483a804de3dfaa1df2eb6b6580a1",
       "message": "[autopilot] test(parser): add coverage for empty input",
       "files": [
