@@ -1,6 +1,4 @@
 import * as cp from 'child_process';
-import * as path from 'path';
-import * as vscode from 'vscode';
 
 export class GitProvider {
     private workspaceRoot: string;

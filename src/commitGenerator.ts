@@ -28,8 +28,9 @@ export class CommitGenerator {
     }
 
     private static determineType(files: string[]): string {
-        const extensions = new Set(files.map(f => path.extname(f)));
-        const fileNames = new Set(files.map(f => path.basename(f)));
+        // Use posix path handling as git returns forward slashes
+        const extensions = new Set(files.map(f => path.posix.extname(f)));
+        const fileNames = new Set(files.map(f => path.posix.basename(f)));
 
         if (fileNames.has('package.json') || fileNames.has('tsconfig.json') || fileNames.has('.gitignore')) {
             return 'chore';
@@ -41,19 +42,19 @@ export class CommitGenerator {
             return 'test';
         }
         if ([...extensions].some(ext => ['.ts', '.js', '.jsx', '.tsx', '.py', '.java'].includes(ext))) {
-            return 'feat'; // Default to feat for code, hard to distinguish fix vs feat without semantic analysis
+            return 'feat'; 
         }
         return 'chore';
     }
 
     private static determineScope(files: string[]): string {
         if (files.length === 1) {
-            const name = path.basename(files[0], path.extname(files[0]));
+            const name = path.posix.basename(files[0], path.posix.extname(files[0]));
             return name === 'package' ? 'deps' : name;
         }
 
         // Find common parent directory
-        const parts = files.map(f => f.split(path.sep));
+        const parts = files.map(f => f.split('/'));
         if (parts.length === 0) return 'global';
         
         let commonDepth = 0;
@@ -69,7 +70,7 @@ export class CommitGenerator {
         }
 
         if (commonDepth > 0) {
-            return first[commonDepth - 1]; // Use the last common folder
+            return first[commonDepth - 1]; 
         }
         
         return 'workspace';
@@ -78,7 +79,7 @@ export class CommitGenerator {
     private static determineSummary(files: string[], type: string): string {
         const count = files.length;
         if (count === 1) {
-            return `update ${path.basename(files[0])}`;
+            return `update ${path.posix.basename(files[0])}`;
         }
         return `update ${count} files`;
     }
@@ -88,7 +89,7 @@ export class CommitGenerator {
         
         // Add file list
         files.slice(0, 5).forEach(f => {
-            details.push(`- ${path.basename(f)}`);
+            details.push(`- ${path.posix.basename(f)}`);
         });
         if (files.length > 5) {
             details.push(`- ...and ${files.length - 5} more`);
